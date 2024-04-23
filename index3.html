@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Missing Number Identification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 5px 15px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function findMissingNumber() {
+            const inputNumbers = document.getElementById('inputNumbers').value;
+            const numbersArray = inputNumbers.split(',').map(Number).sort((a, b) => a - b);
+            const resultDiv = document.getElementById('result');
+
+            if (numbersArray.length === 0) {
+                resultDiv.textContent = 'Please enter some numbers.';
+                return;
+            }
+
+            for (let i = 0; i < numbersArray.length - 1; i++) {
+                if (numbersArray[i + 1] - numbersArray[i] !== 1) {
+                    const missingNumber = numbersArray[i] + 1;
+                    resultDiv.textContent = `The missing number is: ${missingNumber}`;
+                    return;
+                }
+            }
+
+            resultDiv.textContent = 'No missing number found.';
+        }
+    </script>
+</head>
+<body>
+    <h2>Missing Number Identification</h2>
+    
+    <label for="inputNumbers">Enter comma-separated numbers:</label>
+    <input type="text" id="inputNumbers">
+    <button onclick="findMissingNumber()">Find Missing Number</button>
+    
+    <div id="result"></div>
+</body>
+</html>

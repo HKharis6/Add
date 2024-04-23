@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 5px 15px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function isPalindrome(str) {
+            // Remove non-alphanumeric characters and convert to lowercase
+            const cleanStr = str.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+            
+            // Check if the string is equal to its reverse
+            return cleanStr === cleanStr.split('').reverse().join('');
+        }
+
+        function checkPalindrome() {
+            const inputText = document.getElementById('inputText').value;
+            const resultDiv = document.getElementById('result');
+
+            if (isPalindrome(inputText)) {
+                resultDiv.textContent = 'The input text is a palindrome!';
+            } else {
+                resultDiv.textContent = 'The input text is not a palindrome.';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Palindrome Checker</h2>
+    
+    <label for="inputText">Enter text:</label>
+    <input type="text" id="inputText">
+    <button onclick="checkPalindrome()">Check</button>
+    
+    <div id="result"></div>
+</body>
+</html>
